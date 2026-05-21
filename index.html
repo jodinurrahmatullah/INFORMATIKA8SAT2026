@@ -29,7 +29,9 @@
     <div id="custom-modal" class="fixed inset-0 bg-black bg-opacity-50 z-50 flex items-center justify-center hidden">
         <div class="bg-white rounded-xl shadow-xl p-6 w-11/12 max-w-sm text-center">
             <h2 id="modal-title" class="text-xl font-bold text-gray-800 mb-2">Peringatan</h2>
-            <p id="modal-message" class="text-gray-600 mb-6 text-sm">Pesan akan tampil di sini.</p>
+            <div class="max-h-60 overflow-y-auto mb-6">
+                <p id="modal-message" class="text-gray-600 text-sm text-left whitespace-pre-line">Pesan akan tampil di sini.</p>
+            </div>
             <div class="flex justify-center space-x-3">
                 <button id="modal-btn-cancel" class="px-4 py-2 bg-gray-200 text-gray-700 rounded-lg hover:bg-gray-300 font-semibold hidden">Batal</button>
                 <button id="modal-btn-confirm" class="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 font-semibold">OK</button>
@@ -50,7 +52,7 @@
                 <p class="font-bold text-red-600 mb-2"><i class="fas fa-exclamation-triangle"></i> ATURAN UJIAN:</p>
                 <ul class="list-disc pl-5 space-y-1 text-gray-700">
                     <li>Waktu ujian 90 Menit. Total 50 Soal.</li>
-                    <li>Kamera perangkat akan diaktifkan untuk merekam.</li>
+                    <li>Kamera dan mikrofon perangkat akan diaktifkan untuk merekam jalannya ujian.</li>
                     <li>Dilarang keluar dari aplikasi, ganti tab, atau minimize layar.</li>
                     <li>Maksimal 3x pelanggaran, ujian akan diakhiri paksa.</li>
                 </ul>
@@ -95,7 +97,7 @@
                     <h3 class="font-bold text-lg text-gray-800">Soal No. <span id="q-number">1</span></h3>
                     <button onclick="toggleGrid()" class="text-blue-600 text-sm font-semibold bg-blue-50 px-3 py-1 rounded-full"><i class="fas fa-th mr-1"></i> Daftar Soal</button>
                 </div>
-                <p id="q-text" class="text-gray-800 text-base leading-relaxed mb-6 font-medium">Teks soal akan muncul di sini?</p>
+                <div id="q-text" class="text-gray-800 text-base leading-relaxed mb-6 font-medium">Teks soal akan muncul di sini?</div>
                 
                 <div id="q-options" class="space-y-3">
                     <!-- Options injected via JS -->
@@ -178,65 +180,65 @@
     </div>
 
     <script>
-        // ================= SOAL INFORMATIKA KELAS 8 (50 SOAL) =================
+        // ================= SOAL INFORMATIKA KELAS 8 (50 SOAL SEGERA DIPERMUDAH) =================
         const questions = [
             // --- MATERI: SISTEM KOMPUTER (Soal 1 - 13) ---
-            { q: "Perhatikan gambar perangkat keras berikut!<br><img src='https://upload.wikimedia.org/wikipedia/commons/thumb/c/c9/Central_Processing_Unit.svg/200px-Central_Processing_Unit.svg.png' alt='' class='h-24 object-contain mx-auto my-3'>Perangkat di atas merupakan otak utama dari komputer yang berfungsi memproses data. Perangkat ini disebut...", o: ["Motherboard", "RAM", "CPU (Central Processing Unit)", "Harddisk"], a: 2, e: "CPU adalah otak komputer yang bertugas memproses semua instruksi dan data." },
-            { q: "Memori utama pada komputer yang menyimpan data sementara saat aplikasi sedang berjalan dan datanya akan hilang saat komputer dimatikan adalah...", o: ["ROM", "Flashdisk", "Harddisk", "RAM (Random Access Memory)"], a: 3, e: "RAM bersifat Volatile, artinya data akan hilang jika tidak ada aliran listrik." },
-            { q: "Sistem bilangan yang hanya menggunakan dua simbol, yaitu 0 dan 1, yang merupakan bahasa dasar mesin komputer disebut bilangan...", o: ["Biner", "Desimal", "Oktal", "Heksadesimal"], a: 0, e: "Sistem bilangan biner basis 2 digunakan sebagai dasar komputasi digital." },
-            { q: "Berapakah nilai desimal dari bilangan biner '1011'?", o: ["9", "10", "11", "12"], a: 2, e: "1011 = (1x8) + (0x4) + (1x2) + (1x1) = 8 + 0 + 2 + 1 = 11." },
-            { q: "Angka desimal '14' jika dikonversi menjadi bilangan biner adalah...", o: ["1100", "1110", "1010", "1111"], a: 1, e: "14 / 2 = 7 sisa 0; 7 / 2 = 3 sisa 1; 3 / 2 = 1 sisa 1; 1 / 2 = 0 sisa 1. Dibaca dari bawah: 1110." },
-            { q: "Perangkat keras yang berfungsi menghubungkan semua komponen komputer agar dapat saling berkomunikasi adalah...", o: ["Motherboard", "VGA Card", "Power Supply", "Processor"], a: 0, e: "Motherboard (papan induk) adalah sirkuit utama tempat menempelnya komponen seperti CPU, RAM, dll." },
-            { q: "Perhatikan simbol gerbang logika berikut!<br><img src='https://upload.wikimedia.org/wikipedia/commons/thumb/b/b5/OR_ANSI.svg/150px-OR_ANSI.svg.png' alt='' class='h-16 object-contain mx-auto my-3'>Gerbang logika di atas akan menghasilkan nilai TRUE (1) jika minimal salah satu inputnya bernilai TRUE. Gerbang ini disebut...", o: ["AND", "NOT", "OR", "XOR"], a: 2, e: "Gerbang OR menghasilkan nilai 1 jika ada minimal satu input yang bernilai 1." },
-            { q: "Gerbang logika AND hanya akan menghasilkan output Benar (1) apabila...", o: ["Semua input bernilai 1", "Salah satu input bernilai 1", "Semua input bernilai 0", "Input berbeda nilai"], a: 0, e: "Sifat gerbang AND mengharuskan semua masukannya bernilai 1 agar keluarannya 1." },
-            { q: "Kelompok perangkat keras berikut yang semuanya merupakan perangkat keluaran (Output Device) adalah...", o: ["Mouse, Keyboard, Scanner", "Monitor, Printer, Speaker", "Harddisk, Flashdisk, SSD", "Mic, Webcam, Mouse"], a: 1, e: "Monitor, Printer, dan Speaker berfungsi mengeluarkan informasi/data dari komputer ke pengguna." },
-            { q: "Perangkat lunak yang berfungsi menjembatani antara perangkat keras komputer dengan pengguna (user) disebut...", o: ["Aplikasi Perkantoran", "Utility Software", "Sistem Operasi (OS)", "Bahasa Pemrograman"], a: 2, e: "Sistem Operasi (seperti Windows, Linux) adalah software dasar pengelola sumber daya komputer." },
-            { q: "Satuan terkecil dari informasi dalam sistem komputer disebut...", o: ["Byte", "Bit", "Kilobyte", "Megabyte"], a: 1, e: "Bit (Binary Digit) adalah unit data terkecil (0 atau 1) dalam komputasi." },
-            { q: "Manakah media penyimpanan data berikut yang tidak memiliki komponen mekanis (piringan berputar) sehingga lebih cepat dan tahan guncangan?", o: ["Harddisk Drive (HDD)", "Floppy Disk", "Compact Disk (CD)", "Solid State Drive (SSD)"], a: 3, e: "SSD menggunakan memori flash sehingga lebih cepat dan tidak memiliki bagian yang bergerak." },
-            { q: "Sistem bilangan berbasis 16 yang sering digunakan untuk kode warna pada desain grafis adalah bilangan...", o: ["Oktal", "Heksadesimal", "Desimal", "Biner"], a: 1, e: "Heksadesimal menggunakan angka 0-9 dan huruf A-F." },
+            { q: "Perhatikan gambar berikut!<br><img src='https://upload.wikimedia.org/wikipedia/commons/thumb/c/c9/Central_Processing_Unit.svg/200px-Central_Processing_Unit.svg.png' alt='' class='h-24 object-contain mx-auto my-3'>Alat di atas berfungsi sebagai 'otak' komputer untuk memproses semua perintah. Alat ini biasa disebut...", o: ["Monitor", "CPU / Prosesor", "Keyboard", "Printer"], a: 1, e: "CPU (Central Processing Unit) atau prosesor adalah komponen utama yang bertugas sebagai otak komputer." },
+            { q: "Komponen komputer yang berfungsi untuk menyimpan data sementara saat komputer dinyalakan adalah...", o: ["RAM", "Flashdisk", "Printer", "Speaker"], a: 0, e: "RAM (Random Access Memory) berfungsi menyimpan data sementara agar komputer bekerja dengan cepat." },
+            { q: "Sistem bilangan yang hanya menggunakan angka 0 dan 1 di dalam komputer disebut bilangan...", o: ["Desimal", "Oktal", "Biner", "Heksadesimal"], a: 2, e: "Bilangan biner adalah sistem bilangan basis dua yang hanya terdiri dari angka 0 dan 1." },
+            { q: "Berapakah nilai desimal dari bilangan biner mudah '1010'?", o: ["5", "8", "10", "12"], a: 2, e: "Biner 1010 sama dengan desimal 10 (8 + 0 + 2 + 0)." },
+            { q: "Angka desimal '8' jika diubah ke dalam bentuk biner adalah...", o: ["1000", "1010", "1100", "1111"], a: 0, e: "Desimal 8 jika dijadikan bilangan biner adalah 1000." },
+            { q: "Papan sirkuit utama tempat menempelnya komponen penting seperti prosesor dan memori disebut...", o: ["Harddisk", "Motherboard", "VGA Card", "Power Supply"], a: 1, e: "Motherboard adalah papan sirkuit utama yang menghubungkan seluruh komponen komputer." },
+            { q: "Perhatikan gambar berikut!<br><img src='https://upload.wikimedia.org/wikipedia/commons/thumb/b/b5/OR_ANSI.svg/150px-OR_ANSI.svg.png' alt='' class='h-16 object-contain mx-auto my-3'>Simbol gerbang logika di atas akan menghasilkan nilai BENAR jika salah satu atau kedua inputnya bernilai benar. Gerbang ini disebut...", o: ["AND", "OR", "NOT", "NAND"], a: 1, e: "Gerbang OR menghasilkan nilai benar (1) jika minimal salah satu input bernilai benar." },
+            { q: "Gerbang logika AND akan menghasilkan output BENAR (1) hanya jika...", o: ["Semua input bernilai SALAH", "Semua input bernilai BENAR", "Salah satu input bernilai BENAR", "Inputnya berbeda nilai"], a: 1, e: "Gerbang AND membutuhkan semua masukannya bernilai BENAR agar hasilnya bernilai BENAR." },
+            { q: "Manakah di bawah ini yang merupakan alat input (untuk memasukkan data ke komputer)?", o: ["Monitor dan Speaker", "Printer dan Proyektor", "Keyboard dan Mouse", "Harddisk dan Flashdisk"], a: 2, e: "Keyboard dan Mouse digunakan untuk memberikan perintah atau memasukkan data ke komputer." },
+            { q: "Manakah di bawah ini yang merupakan contoh alat output (untuk menampilkan hasil proses)?", o: ["Monitor dan Printer", "Keyboard dan Mouse", "Scanner dan Mikrofon", "Flashdisk dan RAM"], a: 0, e: "Monitor menampilkan gambar, sedangkan printer mencetak dokumen di kertas." },
+            { q: "Sistem operasi yang paling banyak digunakan pada handphone atau ponsel pintar saat ini adalah...", o: ["Windows", "Android", "Linux", "macOS"], a: 1, e: "Android adalah sistem operasi paling populer untuk perangkat ponsel/smartphone." },
+            { q: "Media penyimpanan data yang bentuknya kecil, praktis dibawa ke mana-mana, dan dicolokkan ke port USB adalah...", o: ["RAM", "Motherboard", "Flashdisk", "Prosesor"], a: 2, e: "Flashdisk adalah alat penyimpanan portabel yang sangat populer dan mudah digunakan." },
+            { q: "Program atau aplikasi yang kita gunakan khusus untuk mengetik surat atau dokumen teks di sekolah adalah...", o: ["Microsoft Excel", "Microsoft Word", "Microsoft PowerPoint", "Adobe Photoshop"], a: 1, e: "Microsoft Word (atau pengolah kata) digunakan khusus untuk membuat dokumen berbasis teks." },
 
-            // --- MATERI: JARINGAN INTERNET (Soal 14 - 26) ---
-            { q: "Jaringan komputer yang mencakup area kecil seperti sebuah ruangan kelas atau gedung sekolah disebut...", o: ["WAN", "MAN", "LAN", "PAN"], a: 2, e: "LAN (Local Area Network) adalah jaringan dalam area geografis yang sempit." },
-            { q: "Perhatikan skema jaringan berikut!<br><img src='https://upload.wikimedia.org/wikipedia/commons/thumb/9/9c/Star_network.svg/200px-Star_network.svg.png' alt='' class='h-24 object-contain mx-auto my-3'>Skema di atas menunjukkan susunan jaringan yang berpusat pada satu titik (hub/switch). Topologi ini disebut...", o: ["Topologi Bus", "Topologi Ring", "Topologi Star", "Topologi Tree"], a: 2, e: "Topologi Star memiliki node/komputer sentral (switch/hub) di tengah yang menghubungkan node lain." },
-            { q: "Perangkat yang berfungsi meneruskan paket data dari satu jaringan ke jaringan lain dan menentukan rute terbaik adalah...", o: ["Router", "Switch", "Hub", "Repeater"], a: 0, e: "Router adalah perangkat jaringan yang meneruskan paket data antar jaringan komputer." },
-            { q: "Apa yang dimaksud dengan IP Address dalam sebuah jaringan komputer?", o: ["Nama pemilik komputer", "Alamat fisik dari kartu jaringan", "Identitas numerik unik untuk setiap perangkat di jaringan", "Kecepatan maksimal koneksi"], a: 2, e: "IP Address ibarat alamat rumah perangkat yang terhubung ke dalam jaringan internet." },
-            { q: "Bentuk komunikasi nirkabel yang paling sering digunakan untuk mengakses jaringan internet di sekolah atau cafe adalah...", o: ["Fiber Optik", "Wi-Fi", "Kabel Coaxial", "Bluetooth"], a: 1, e: "Wi-Fi menggunakan gelombang radio untuk menyediakan akses jaringan nirkabel lokal." },
-            { q: "Perusahaan atau organisasi yang menyediakan layanan koneksi internet kepada pelanggan (seperti Telkomsel, Indihome, Biznet) disebut...", o: ["ISP (Internet Service Provider)", "DNS (Domain Name System)", "URL (Uniform Resource Locator)", "HTTP"], a: 0, e: "ISP adalah penyedia layanan internet." },
-            { q: "Sistem penamaan yang mengubah alamat IP berupa angka menjadi nama domain (misal: google.com) agar mudah diingat manusia disebut...", o: ["DHCP", "DNS", "FTP", "MAC Address"], a: 1, e: "DNS (Domain Name System) berfungsi menerjemahkan IP Address menjadi nama domain." },
-            { q: "Perhatikan gambar berikut!<br><img src='https://upload.wikimedia.org/wikipedia/commons/thumb/1/13/Lock-green.svg/150px-Lock-green.svg.png' alt='' class='h-16 object-contain mx-auto my-3'>Simbol gembok pada address bar browser menandakan bahwa website tersebut menggunakan protokol aman, yaitu...", o: ["HTTP", "HTTPS", "FTP", "SMTP"], a: 1, e: "HTTPS (Secure) mengenkripsi pertukaran data antara browser dan server." },
-            { q: "Tindakan menghubungkan koneksi internet dari smartphone ke perangkat lain (seperti laptop) disebut...", o: ["Browsing", "Tethering / Hotspot", "Phishing", "Streaming"], a: 1, e: "Tethering adalah berbagi koneksi internet seluler perangkat seluler dengan komputer lain." },
-            { q: "Jaringan luas yang mencakup antar kota, negara, bahkan seluruh dunia dinamakan...", o: ["LAN", "MAN", "WAN / Internet", "Intranet"], a: 2, e: "WAN (Wide Area Network) mencakup wilayah geografis yang luas, contoh terbesarnya adalah Internet." },
-            { q: "Media transmisi jaringan komputer yang menggunakan untaian kaca halus dan menggunakan cahaya untuk mengirimkan data dengan kecepatan sangat tinggi adalah...", o: ["Kabel Coaxial", "Kabel UTP (Twisted Pair)", "Bluetooth", "Fiber Optik"], a: 3, e: "Fiber optik menggunakan cahaya laser/LED untuk mengirim data dengan bandwidth besar." },
-            { q: "Perbedaan utama antara Internet dan Intranet adalah...", o: ["Internet menggunakan kabel, Intranet nirkabel", "Internet untuk publik dunia, Intranet terbatas untuk organisasi tertentu", "Intranet lebih lambat dari internet", "Internet gratis, Intranet selalu berbayar"], a: 1, e: "Intranet adalah jaringan privat (internal) sebuah perusahaan/sekolah, sedangkan Internet publik." },
-            { q: "Kapasitas maksimal jalur komunikasi data dalam suatu jaringan (biasanya diukur dengan satuan bps/Mbps) disebut...", o: ["Topologi", "Protokol", "Bandwidth", "Ping"], a: 2, e: "Bandwidth adalah lebar cakupan frekuensi/kapasitas maksimal transfer data." },
+            // --- MATERI: JARINGAN KOMPUTER DAN INTERNET (Soal 14 - 26) ---
+            { q: "Jaringan komputer yang areanya kecil, seperti hanya ada di dalam satu lab komputer sekolah, disebut...", o: ["WAN", "MAN", "LAN", "PAN"], a: 2, e: "LAN (Local Area Network) adalah jaringan komputer lokal dalam ruang atau gedung yang terbatas." },
+            { q: "Perhatikan susunan jaringan berikut!<br><img src='https://upload.wikimedia.org/wikipedia/commons/thumb/9/9c/Star_network.svg/200px-Star_network.svg.png' alt='' class='h-24 object-contain mx-auto my-3'>Topologi jaringan yang menggunakan satu alat pusat (seperti hub atau switch) di tengahnya disebut topologi...", o: ["Bus", "Ring", "Star (Bintang)", "Mesh"], a: 2, e: "Topologi Star menghubungkan semua komputer ke satu titik pusat (hub/switch)." },
+            { q: "Alat yang berfungsi untuk menghubungkan jaringan lokal ke jaringan luar atau internet disebut...", o: ["Printer", "Router / Modem", "Scanner", "Keyboard"], a: 1, e: "Router atau Modem berfungsi menyambungkan komputer ke jaringan internet." },
+            { q: "Alamat angka unik yang dimiliki oleh setiap komputer atau HP agar bisa saling terhubung di internet disebut...", o: ["IP Address", "Nomor Telepon", "E-mail", "Situs Web"], a: 0, e: "IP (Internet Protocol) Address berfungsi sebagai tanda pengenal unik setiap perangkat di jaringan." },
+            { q: "Cara menyambungkan HP ke internet tanpa menggunakan kabel di rumah atau kafe biasa disebut memakai...", o: ["Kabel UTP", "Bluetooth", "Wi-Fi", "Flashdisk"], a: 2, e: "Wi-Fi adalah teknologi jaringan tanpa kabel (nirkabel) untuk mengakses internet." },
+            { q: "Perusahaan penyedia jasa internet yang kita bayar setiap bulan (seperti Indihome, Telkomsel, XL) disebut...", o: ["ISP", "DNS", "URL", "HTML"], a: 0, e: "ISP (Internet Service Provider) adalah perusahaan penyedia akses internet bagi masyarakat." },
+            { q: "Sistem yang bertugas mengubah alamat angka IP menjadi nama situs web agar mudah kita hafal (contoh: 172.217.0.0 menjadi google.com) disebut...", o: ["DHCP", "FTP", "DNS", "HTTP"], a: 2, e: "DNS (Domain Name System) menerjemahkan angka IP Address menjadi nama domain yang mudah diingat." },
+            { q: "Perhatikan gambar berikut!<br><img src='https://upload.wikimedia.org/wikipedia/commons/thumb/1/13/Lock-green.svg/150px-Lock-green.svg.png' alt='' class='h-16 object-contain mx-auto my-3'>Tanda gembok terkunci pada alamat situs web menandakan bahwa situs tersebut menggunakan protokol aman, yaitu...", o: ["HTTP", "HTTPS", "FTP", "SMTP"], a: 1, e: "HTTPS menggunakan enkripsi untuk mengamankan komunikasi data di internet." },
+            { q: "Fitur di HP yang bisa kita gunakan untuk membagikan kuota internet kita ke laptop teman disebut...", o: ["Browsing", "Tethering / Hotspot", "Download", "Upload"], a: 1, e: "Tethering atau Personal Hotspot digunakan untuk berbagi koneksi internet seluler ke perangkat lain." },
+            { q: "Jaringan komputer raksasa yang menghubungkan seluruh komputer di dunia tanpa batas jarak dinamakan...", o: ["LAN", "Intranet", "Internet", "MAN"], a: 2, e: "Internet (Interconnected Network) menghubungkan jutaan perangkat di seluruh belahan dunia." },
+            { q: "Kabel jaringan modern yang terbuat dari serat kaca tipis dan mengirimkan data sangat cepat menggunakan bantuan cahaya adalah...", o: ["Kabel UTP", "Kabel Telepon", "Kabel Coaxial", "Kabel Fiber Optik"], a: 3, e: "Kabel Fiber Optik memakai media cahaya di dalam serat kaca untuk kecepatan transfer maksimal." },
+            { q: "Teknologi nirkabel yang jaraknya sangat pendek, biasanya dipakai untuk mengirim foto antar HP atau menyambungkan speaker nirkabel, adalah...", o: ["Wi-Fi", "Bluetooth", "Fiber Optik", "Satelit"], a: 1, e: "Bluetooth dirancang khusus untuk komunikasi data nirkabel jarak dekat (sekitar 10 meter)." },
+            { q: "Aplikasi yang wajib ada di HP atau laptop untuk membuka halaman web (seperti Google Chrome, Mozilla Firefox, atau Safari) disebut...", o: ["Aplikasi Chatting", "Web Browser", "Sistem Operasi", "Game"], a: 1, e: "Web Browser digunakan untuk membaca dan menampilkan halaman web di internet." },
 
             // --- MATERI: ANALISIS DATA (Soal 27 - 38) ---
-            { q: "Aplikasi yang dirancang khusus untuk menganalisis, mengolah, dan menyajikan data berupa baris dan kolom adalah...", o: ["Microsoft Word", "Aplikasi Spreadsheet (Ms. Excel/Google Sheets)", "Microsoft PowerPoint", "Adobe Photoshop"], a: 1, e: "Spreadsheet dirancang khusus untuk mengolah angka dan tabel." },
-            { q: "Pertemuan antara kolom (Column) dan baris (Row) pada aplikasi lembar kerja tempat kita memasukkan data disebut...", o: ["Range", "Sheet", "Cell (Sel)", "Formula"], a: 2, e: "Cell adalah unit terkecil di Spreadsheet, dinamai dari kolom dan barisnya (misal: B2)." },
-            { q: "Setiap penulisan rumus matematika (formula) di dalam aplikasi spreadsheet wajib diawali dengan tanda...", o: ["+", "-", ":", "="], a: 3, e: "Tanda sama dengan (=) memberitahu program bahwa yang ditulis adalah sebuah rumus." },
-            { q: "Fungsi yang digunakan untuk mencari total jumlah (penjumlahan) dari sebuah rentang data angka adalah...", o: ["=COUNT()", "=MAX()", "=SUM()", "=AVERAGE()"], a: 2, e: "SUM berfungsi untuk menjumlahkan." },
-            { q: "Jika kita ingin mencari nilai rata-rata ulangan dari data yang ada di sel A1 sampai A10, fungsi yang tepat adalah...", o: ["=AVERAGE(A1:A10)", "=SUM(A1:A10)", "=COUNT(A1:A10)", "=MIN(A1:A10)"], a: 0, e: "AVERAGE mencari nilai rata-rata rentang data." },
-            { q: "Fungsi statistik yang digunakan untuk mengetahui nilai tertinggi dari sekumpulan data adalah...", o: ["=MIN()", "=HIGH()", "=MAX()", "=TOP()"], a: 2, e: "MAX mencari nilai terbesar dalam kumpulan data." },
-            { q: "Perhatikan fungsi logika berikut: =IF(C2>75, \"LULUS\", \"REMEDIAL\"). Jika sel C2 berisi nilai 70, maka hasil yang ditampilkan adalah...", o: ["LULUS", "REMEDIAL", "ERROR", "75"], a: 1, e: "Karena 70 tidak lebih besar dari 75 (kondisi salah), maka akan mengeksekusi parameter 'False', yaitu REMEDIAL." },
-            { q: "Perhatikan gambar berikut!<br><img src='https://upload.wikimedia.org/wikipedia/commons/thumb/b/b4/Pie_chart_example.svg/200px-Pie_chart_example.svg.png' alt='[Image of Diagram Lingkaran]' class='h-24 object-contain mx-auto my-3'>Jenis grafik ini sangat cocok digunakan untuk memvisualisasikan persentase atau proporsi suatu data terhadap total. Grafik ini disebut...", o: ["Line Chart (Garis)", "Bar Chart (Batang)", "Pie Chart (Lingkaran)", "Scatter Chart (Titik)"], a: 2, e: "Pie Chart menunjukkan pembagian komponen dari sebuah total 100%." },
-            { q: "Fitur pada spreadsheet yang digunakan untuk mengurutkan data dari abjad A ke Z atau dari nilai terkecil ke terbesar dinamakan...", o: ["Sort (Ascending)", "Sort (Descending)", "Filter", "Find & Replace"], a: 0, e: "Sort Ascending mengurutkan data naik." },
-            { q: "Fitur yang digunakan untuk menyembunyikan sebagian data yang tidak diinginkan dan hanya menampilkan data yang sesuai dengan kriteria tertentu disebut...", o: ["Sorting", "Filtering", "Formatting", "Charting"], a: 1, e: "Filtering (penyaringan) memunculkan data yang memenuhi syarat spesifik saja." },
-            { q: "Fungsi =COUNT(B2:B10) digunakan untuk...", o: ["Menjumlahkan total nilai", "Menghitung banyaknya sel yang berisi angka", "Mencari rata-rata", "Mencari huruf tertentu"], a: 1, e: "COUNT hanya menghitung 'banyaknya sel' yang datanya berupa angka/numerik." },
-            { q: "Simbol yang digunakan untuk mengunci baris atau kolom (Absolute Reference) pada rumus agar tidak berubah saat disalin ke sel lain adalah...", o: ["&", "#", "$", "@"], a: 2, e: "Simbol Dolar ($) di depan kolom/baris (misal $A$1) membuatnya menjadi referensi absolut." },
+            { q: "Aplikasi yang paling cocok digunakan di komputer sekolah untuk mengolah data angka dan tabel adalah...", o: ["Microsoft Word", "Microsoft Excel / Spreadsheet", "Microsoft PowerPoint", "Paint"], a: 1, e: "Microsoft Excel dan Google Sheets adalah software pengolah angka/spreadsheet." },
+            { q: "Kotak kecil tempat kita mengetikkan data di Microsoft Excel, yang merupakan pertemuan kolom dan baris (contoh: A1), disebut...", o: ["Range", "Sel (Cell)", "Sheet", "Formula"], a: 1, e: "Sel adalah perpotongan antara kolom (huruf) dan baris (angka)." },
+            { q: "Setiap kali kita menuliskan rumus atau fungsi perhitungan di Excel, tulisan tersebut wajib diawali tanda...", o: ["Tanda Tambah (+)", "Tanda Tanya (?)", "Tanda Sama Dengan (=)", "Tanda Kurung ( )"], a: 2, e: "Tanda '=' memberitahu program Excel bahwa teks setelahnya adalah rumus matematika." },
+            { q: "Rumus Excel yang digunakan untuk menjumlahkan semua angka dalam suatu kelompok sel adalah...", o: ["=COUNT", "=SUM", "=AVERAGE", "=MAX"], a: 1, e: "SUM berfungsi untuk menjumlahkan nilai sel secara otomatis." },
+            { q: "Untuk menghitung nilai rata-rata dari sekelompok nilai di Excel, fungsi yang kita gunakan adalah...", o: ["=SUM", "=MIN", "=COUNT", "=AVERAGE"], a: 3, e: "AVERAGE dipakai untuk membagi total jumlah nilai dengan banyaknya data." },
+            { q: "Jika kita ingin mencari nilai paling tinggi (terbesar) dari daftar nilai ujian siswa, rumus yang tepat adalah...", o: ["=MIN", "=MAX", "=SUM", "=AVERAGE"], a: 1, e: "Fungsi MAX digunakan untuk menyaring dan memunculkan angka tertinggi." },
+            { q: "Jika kita ingin mencari nilai paling rendah (terkecil) dari daftar nilai ujian siswa, rumus yang tepat adalah...", o: ["=MIN", "=MAX", "=SUM", "=AVERAGE"], a: 0, e: "Fungsi MIN digunakan untuk mencari nilai paling kecil di suatu kelompok data." },
+            { q: "Perhatikan gambar berikut!<br><img src='https://upload.wikimedia.org/wikipedia/commons/thumb/b/b4/Pie_chart_example.svg/200px-Pie_chart_example.svg.png' alt='' class='h-24 object-contain mx-auto my-3'>Jenis grafik berbentuk bulat potong-potong di atas sangat cocok untuk menggambarkan bagian persentase. Grafik ini disebut...", o: ["Bar Chart", "Line Chart", "Pie Chart (Lingkaran)", "Area Chart"], a: 2, e: "Pie Chart memvisualisasikan proporsi data dalam bentuk potongan lingkaran." },
+            { q: "Fitur di Excel yang digunakan untuk mengurutkan daftar nama siswa dari huruf A sampai Z secara teratur disebut...", o: ["Filter", "Sort", "Save", "Print"], a: 1, e: "Sort digunakan untuk mengurutkan data (baik teks maupun angka) secara berurutan." },
+            { q: "Fitur di Excel yang digunakan untuk menyaring data agar hanya menampilkan data tertentu saja yang kita inginkan dinamakan...", o: ["Filter", "Sort", "Chart", "Format"], a: 0, e: "Filter berfungsi menyaring data berdasarkan kriteria tertentu (misal: hanya menampilkan kelas 8 A)." },
+            { q: "Fungsi rumus '=COUNT' di Excel digunakan khusus untuk...", o: ["Menjumlahkan angka", "Mencari rata-rata", "Menghitung banyaknya sel yang berisi angka", "Mencari nilai tertinggi"], a: 2, e: "COUNT menghitung berapa banyak sel dalam rentang tertentu yang memiliki data angka." },
+            { q: "Simbol yang dipasang di depan baris atau kolom rumus Excel agar sel tersebut tidak ikut bergeser saat disalin (dikunci) adalah...", o: ["Tanda Dan (&)", "Tanda Dolar ($)", "Tanda Pagar (#)", "Tanda Persen (%)"], a: 1, e: "Tanda Dolar ($) digunakan untuk membuat referensi sel menjadi absolut (terkunci)." },
 
             // --- MATERI: DAMPAK SOSIAL INFORMATIKA (Soal 39 - 50) ---
-            { q: "Perilaku merundung, mengancam, mempermalukan, atau melecehkan orang lain secara berulang-ulang melalui media digital disebut...", o: ["Carding", "Phishing", "Cyberbullying", "Cracking"], a: 2, e: "Cyberbullying adalah perundungan di dunia maya yang berakibat serius pada psikis korban." },
-            { q: "Perhatikan ilustrasi berikut!<br><img src='https://upload.wikimedia.org/wikipedia/commons/thumb/1/14/Phishing_email.png/250px-Phishing_email.png' alt='' class='h-24 object-contain mx-auto my-3'>Tindakan penipuan yang dilakukan untuk mengelabui pengguna agar memberikan data pribadi sensitif (seperti password/PIN) dengan cara menyamar sebagai institusi resmi dinamakan...", o: ["Hoax", "Phishing", "Deface", "Ransomware"], a: 1, e: "Phishing berarti 'memancing' informasi dengan situs atau pesan palsu." },
-            { q: "Di Indonesia, peraturan perundang-undangan yang mengatur tentang tata cara penggunaan teknologi, informasi, dan transaksi elektronik agar tidak melanggar hukum disebut...", o: ["UU Hak Cipta", "UU Telekomunikasi", "UU Keterbukaan Informasi", "UU ITE"], a: 3, e: "UU ITE (Informasi dan Transaksi Elektronik) adalah payung hukum cyberlaw di Indonesia." },
-            { q: "Jejak data yang kita tinggalkan secara sengaja maupun tidak sengaja saat berselancar di internet (seperti riwayat pencarian, unggahan foto, komentar) dikenal dengan istilah...", o: ["Digital Footprint (Jejak Digital)", "Digital Native", "Digital Wallet", "Digital Access"], a: 0, e: "Jejak digital sulit dihapus dan bisa memengaruhi reputasi di masa depan." },
-            { q: "Membajak software asli, menyalin dan menyebarkan film atau lagu tanpa izin pemilik aslinya merupakan pelanggaran hukum di bidang...", o: ["Hak Asasi Manusia", "Hak Cipta (HAKI)", "Privasi", "Kekerasan Digital"], a: 1, e: "Pembajakan (Piracy) adalah pelanggaran hak cipta intelektual pencipta karya." },
-            { q: "Berita bohong atau informasi yang tidak benar namun direkayasa seolah-olah benar untuk menipu atau memprovokasi masyarakat disebut...", o: ["Spam", "Clickbait", "Hoax", "Satir"], a: 2, e: "Hoax diciptakan untuk menciptakan kebingungan atau keresahan di masyarakat." },
-            { q: "Langkah pencegahan utama agar akun media sosial kita tidak mudah dibobol (di-hack) orang lain adalah...", o: ["Menggunakan password tanggal lahir", "Menggunakan password yang panjang kombinasi huruf, angka, dan simbol", "Tidak memakai foto profil", "Membagikan password hanya pada teman dekat"], a: 1, e: "Strong password adalah kunci utama keamanan akun (contoh: P@ssW0rd_123!)." },
-            { q: "Sebuah pesan singkat berupa angka unik (biasanya 4-6 digit) yang dikirim sistem via SMS/WA sebagai lapis keamanan tambahan saat kita login disebut...", o: ["URL", "CAPTCHA", "PIN", "OTP (One Time Password)"], a: 3, e: "OTP hanya berlaku sekali pakai dalam durasi waktu tertentu demi keamanan ekstra." },
-            { q: "Etika dan sopan santun saat berkomunikasi di dunia maya (internet) dikenal dengan sebutan...", o: ["Netiquette (Network Etiquette)", "Cyberlaw", "Digital citizenship", "Cybersecurity"], a: 0, e: "Netiquette mengatur agar kita tetap sopan dan menghargai orang lain layaknya di dunia nyata." },
-            { q: "Menulis pesan dengan HURUF KAPITAL SEMUA di grup WhatsApp atau forum sering kali dianggap melanggar etika internet karena diartikan sebagai...", o: ["Penegasan makna", "Berteriak atau sedang marah", "Bentuk keakraban", "Tanda pesan penting"], a: 1, e: "Dalam budaya teks digital, KAPITAL PENUH setara dengan teriakan (shouting)." },
-            { q: "Salah satu dampak negatif yang mengkhawatirkan dari terlalu lama menggunakan media sosial tanpa henti (scroll berjam-jam) adalah...", o: ["Meningkatnya kemampuan analisis", "Adiksi/ketergantungan dan berkurangnya interaksi fisik", "Menjadi ahli programer", "Baterai ponsel menjadi lebih awet"], a: 1, e: "Adiksi (kecanduan) merusak pola tidur dan kemampuan bersosialisasi di dunia nyata." },
-            { q: "Jika kamu menerima pesan berantai yang berisi informasi provokatif namun belum jelas kebenarannya, tindakan paling bijak yang harus kamu lakukan adalah...", o: ["Langsung share ke semua kontak agar waspada", "Membalas pesan dengan kata-kata kasar", "Melakukan verifikasi (saring sebelum sharing)", "Menyimpan ke media penyimpanan cloud"], a: 2, e: "Selalu tabayyun (cek fakta) sebelum membagikan informasi agar tidak menjadi penyebar hoax." }
+            { q: "Tindakan mengejek, memusuhi, atau merendahkan teman secara terus-menerus lewat media sosial di internet disebut...", o: ["Hacking", "Cyberbullying (Perundungan Maya)", "Phishing", "Tethering"], a: 1, e: "Cyberbullying adalah perilaku intimidasi atau perundungan yang dilakukan di media digital." },
+            { q: "Perhatikan gambar ilustrasi berikut!<br><img src='https://upload.wikimedia.org/wikipedia/commons/thumb/1/14/Phishing_email.png/250px-Phishing_email.png' alt='' class='h-24 object-contain mx-auto my-3'>Penipuan online lewat email atau link palsu yang dibuat mirip dengan aslinya untuk mencuri kata sandi pengguna disebut...", o: ["Spam", "Hoax", "Phishing", "Deface"], a: 2, e: "Phishing adalah upaya mengelabui korban untuk mendapatkan informasi rahasia." },
+            { q: "Undang-Undang di Indonesia yang mengatur tentang aturan hukum dalam menggunakan teknologi informasi dan transaksi elektronik adalah...", o: ["UU Hak Cipta", "UU ITE", "UU Pendidikan", "UU Lalu Lintas"], a: 1, e: "UU ITE (Informasi dan Transaksi Elektronik) adalah payung hukum kejahatan siber di Indonesia." },
+            { q: "Jejak aktivitas, foto, atau komentar yang kita tinggalkan di internet dan tidak bisa benar-benar hilang disebut...", o: ["Jejak Kaki", "Jejak Digital", "Digital Wallet", "Digital Library"], a: 1, e: "Jejak digital (Digital Footprint) adalah rekaman riwayat aktivitas pengguna saat menggunakan internet." },
+            { q: "Menyebarkan film berbayar atau lagu orang lain secara gratis di internet tanpa izin dari pembuat aslinya merupakan contoh tindakan...", o: ["Bagi-bagi gratis", "Pembajakan / Pelanggaran Hak Cipta", "Bantuan sosial", "Kebebasan internet"], a: 1, e: "Pembajakan karya digital melanggar Hak Kekayaan Intelektual (HAKI) pembuatnya." },
+            { q: "Informasi bohong yang sengaja disebarluaskan di internet untuk menakut-nakuti atau menipu banyak orang disebut...", o: ["E-mail", "Hoax", "Chat", "Berita Resmi"], a: 1, e: "Hoax adalah informasi palsu atau berita bohong yang direkayasa agar terlihat nyata." },
+            { q: "Berikut ini adalah kriteria membuat kata sandi (password) yang aman untuk akun media sosial kita, yaitu...", o: ["Menggunakan tanggal lahir sendiri", "Menggunakan angka berurutan 12345", "Menggunakan kombinasi huruf, angka, dan simbol yang panjang", "Menggunakan nama panggilan saja"], a: 2, e: "Kombinasi karakter membuat password tidak mudah ditebak oleh orang lain atau sistem peretas." },
+            { q: "Kode verifikasi 4-6 angka rahasia yang dikirim otomatis lewat SMS/WhatsApp saat kita mau login akun dan tidak boleh diberikan ke orang lain adalah...", o: ["IP Address", "Nomor Rekening", "Kode OTP", "Username"], a: 2, e: "OTP (One Time Password) adalah sandi sekali pakai yang berfungsi sebagai keamanan ganda." },
+            { q: "Tata krama dan aturan sopan santun yang wajib kita patuhi ketika berkomunikasi di internet disebut...", o: ["Cyber Law", "Netiket", "Digital Native", "Hacker"], a: 1, e: "Netiket (Netiquette) adalah etika saat berinteraksi di dunia maya." },
+            { q: "Di dalam obrolan grup WhatsApp, mengetik pesan dengan menggunakan HURUF BESAR SEMUA biasanya diartikan sebagai...", o: ["Sedang berbisik", "Sedang berteriak atau marah", "Mengajak bercanda", "Tanda pesan rahasia"], a: 1, e: "Menulis pesan dengan huruf kapital penuh di dunia maya dianggap kurang sopan karena melambangkan teriakan." },
+            { q: "Salah satu dampak buruk yang timbul jika kita terlalu lama bermain HP tanpa kenal waktu di rumah adalah...", o: ["Mata menjadi sehat", "Menjadi makin pintar pemrograman", "Kecanduan dan melupakan lingkungan sekitar", "HP menjadi dingin"], a: 2, e: "Adiksi gawai (gadget addiction) dapat mengganggu kesehatan dan komunikasi dengan orang lain." },
+            { q: "Jika kita mendapatkan sebuah berita heboh dari grup WhatsApp yang belum tentu benar, hal pertama yang harus kita lakukan adalah...", o: ["Langsung menyebarkan ke grup kelas", "Menyimpannya sendiri di laptop", "Melakukan cek kebenaran berita terlebih dahulu (Saring sebelum Sharing)", "Menghapus aplikasi WhatsApp"], a: 2, e: "Langkah verifikasi atau menyaring info mencegah kita menjadi agen penyebar hoax." }
         ];
 
         // ================= STATE & VARIABLES =================
@@ -296,25 +298,32 @@
             document.getElementById('custom-modal').classList.add('hidden');
         }
 
-        // ================= IMPROVED CASCADING CAMERA INIT =================
+        // ================= IMPROVED CASCADING CAMERA & MICROPHONE INIT =================
         async function initCameraCascade() {
-            // Urutan konfigurasi kamera yang dicoba (paling ideal hingga paling umum)
             const configurations = [
+                { video: { width: { ideal: 320 }, height: { ideal: 240 }, facingMode: "user" }, audio: true },
+                { video: { facingMode: "user" }, audio: true },
+                { video: true, audio: true },
                 { video: { width: { ideal: 320 }, height: { ideal: 240 }, facingMode: "user" }, audio: false },
-                { video: { facingMode: "user" }, audio: false },
                 { video: true, audio: false }
             ];
 
+            let lastError = null;
             for (let i = 0; i < configurations.length; i++) {
                 try {
-                    console.log(`Mencoba konfigurasi kamera ke-${i + 1}...`);
+                    console.log(`Mencoba konfigurasi media ke-${i + 1}...`);
                     const stream = await navigator.mediaDevices.getUserMedia(configurations[i]);
-                    if (stream) return stream; // Sukses mendapatkan kamera
+                    if (stream) {
+                        const hasAudio = stream.getAudioTracks().length > 0;
+                        console.log(`Media berhasil aktif. Status audio/mikrofon: ${hasAudio ? "Aktif" : "Tidak Aktif"}`);
+                        return stream; 
+                    }
                 } catch (err) {
+                    lastError = err;
                     console.warn(`Gagal konfigurasi ke-${i + 1}: ${err.name || err.message}`);
                 }
             }
-            throw new Error("Semua opsi inisialisasi kamera gagal.");
+            throw lastError || new Error("Semua opsi inisialisasi kamera dan mikrofon gagal.");
         }
 
         // ================= CORE EXAM FUNCTIONS =================
@@ -328,13 +337,14 @@
             }
 
             let cameraActivated = false;
+            let setupError = "";
+
             try {
-                // Mencoba mengaktifkan kamera dengan sistem deteksi bertingkat
+                // Mencoba mengaktifkan kamera dan mikrofon dengan sistem deteksi bertingkat
                 cameraStream = await initCameraCascade();
                 const videoEl = document.getElementById('camera-feed');
                 videoEl.srcObject = cameraStream;
                 
-                // Coba jalankan pemutaran video secara aman
                 try {
                     await videoEl.play();
                 } catch(playErr) {
@@ -344,16 +354,20 @@
                 startRecording();
                 cameraActivated = true;
             } catch (err) {
-                console.error("Gagal total menyalakan kamera:", err);
+                console.error("Gagal total menyalakan kamera/mikrofon:", err);
+                setupError = err.name || err.message || "Izin Ditolak";
                 const time = new Date().toLocaleTimeString('id-ID');
-                violationLog.push(`[${time}] Kamera Gagal Diaktifkan (Izin Ditolak/Hardware Error)`);
+                violationLog.push(`[${time}] Kamera/Mikrofon Gagal Diaktifkan (${setupError})`);
             }
 
-            // Jika kamera gagal diaktifkan, berikan fallback akses darurat agar tidak mengunci siswa
+            // PERUBAHAN UTAMA: Jika gagal, langsung tampilkan modal informatif dan otomatis masuk secara mulus tanpa pemblokiran
             if (!cameraActivated) {
-                customConfirm(
-                    "Kamera Tidak Terdeteksi",
-                    "Aplikasi tidak berhasil mengakses kamera Anda (mungkin izin ditolak atau perangkat tidak didukung). Anda tetap bisa mengikuti ujian, namun status tanpa kamera ini akan dicatat di sistem/Spreadsheet. Lanjutkan?",
+                const infoMessage = "Aplikasi ujian mendeteksi masalah atau tidak mendapat izin akses ke Kamera/Mikrofon perangkat Anda.\n\n" +
+                                     "⚠️ Jangan khawatir! Anda tetap diizinkan mengikuti ujian Sumatif ini secara normal.\n\n" +
+                                     "Klik OK untuk langsung melanjutkan masuk ke halaman pengerjaan soal.";
+                customAlert(
+                    "Pemberitahuan Sistem",
+                    infoMessage,
                     () => {
                         // Sembunyikan elemen video jika kamera memang rusak/tidak aktif
                         document.getElementById('camera-feed').style.display = 'none';
@@ -384,24 +398,37 @@
         function startRecording() {
             if (!cameraStream) return;
             
-            // Mencoba beberapa format video yang kompatibel dengan browser seluler
+            const formats = [
+                'video/webm;codecs=vp9,opus',
+                'video/webm;codecs=vp8,opus',
+                'video/webm',
+                'video/mp4;codecs=avc1,mp4a.40.2',
+                'video/mp4'
+            ];
+
+            let selectedFormat = null;
+            for (let format of formats) {
+                if (MediaRecorder.isTypeSupported && MediaRecorder.isTypeSupported(format)) {
+                    selectedFormat = format;
+                    break;
+                }
+            }
+
             try {
-                try {
-                    mediaRecorder = new MediaRecorder(cameraStream, { mimeType: 'video/webm' });
-                } catch (e) {
-                    try {
-                        mediaRecorder = new MediaRecorder(cameraStream, { mimeType: 'video/mp4' });
-                    } catch (e2) {
-                        mediaRecorder = new MediaRecorder(cameraStream); // Default browser fallback
-                    }
+                if (selectedFormat) {
+                    console.log(`Menggunakan format perekaman: ${selectedFormat}`);
+                    mediaRecorder = new MediaRecorder(cameraStream, { mimeType: selectedFormat });
+                } else {
+                    console.log("Menggunakan format perekaman default browser.");
+                    mediaRecorder = new MediaRecorder(cameraStream);
                 }
                 
                 mediaRecorder.ondataavailable = function(e) {
-                    if (e.data.size > 0) {
+                    if (e.data && e.data.size > 0) {
                         recordedChunks.push(e.data);
                     }
                 };
-                mediaRecorder.start(3000); // chunk rekaman setiap 3 detik
+                mediaRecorder.start(3000); // mengumpulkan chunk rekaman setiap 3 detik agar hemat memori RAM ponsel
             } catch(e) {
                 console.error("Gagal memulai modul perekaman layar/kamera:", e);
             }
@@ -420,7 +447,7 @@
                     try {
                         track.stop();
                     } catch(e) {
-                        console.error("Gagal menghentikan track kamera:", e);
+                        console.error("Gagal menghentikan track media:", e);
                     }
                 });
             }
@@ -642,7 +669,7 @@
         // ================= POST-EXAM ACTIONS =================
         function downloadVideo() {
             if (recordedChunks.length === 0) {
-                customAlert("Gagal", "Rekaman tidak tersedia atau kosong karena kamera tidak sempat diaktifkan pada sesi ujian ini.");
+                customAlert("Pemberitahuan", "Maaf, rekaman video tidak tersedia karena kamera dinonaktifkan atau terjadi masalah pada media perangkat selama ujian.");
                 return;
             }
             try {
@@ -684,7 +711,7 @@
                 let html = `
                     <div class="${bgClass} p-4 rounded-xl shadow-sm border border-gray-200">
                         <div class="flex items-start justify-between mb-2">
-                            <h4 class="font-bold text-gray-800 text-sm flex-1">Soal ${i+1}: ${q.q}</h4>
+                            <div class="font-bold text-gray-800 text-sm flex-1">Soal ${i+1}: ${q.q}</div>
                             <span class="ml-2 text-lg">${icon}</span>
                         </div>
                         <div class="text-xs space-y-1 mb-3">
